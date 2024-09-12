@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/rp/urop/test_ws/src/boundary_evaluation/src/boundary_eval.cpp
+/home/rp/urop/test_ws/src/boundary_evaluation/src/boundary_find_urop.cpp
 pcl/io/ply_io.h
 -
 pcl/point_types.h

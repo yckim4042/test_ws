@@ -337,7 +337,7 @@ pcl::PointCloud<pcl::PointXYZ>::Ptr projectTo2DPlane(const pcl::PointCloud<pcl::
 int main(int argc, char **argv) {
 
     pcl::PointCloud<pcl::PointXYZ>::Ptr cloud(new pcl::PointCloud<pcl::PointXYZ>);
-    if (pcl::io::loadPLYFile<pcl::PointXYZ>("/home/rp/urop/test_ws/src/boundary_evaluation/boundary_gt/point_cloud_001_float.ply", *cloud) == -1) {
+    if (pcl::io::loadPLYFile<pcl::PointXYZ>("/home/rp/urop/test_ws/src/boundary_evaluation/src/boundary_gt/point_cloud_001_float.ply", *cloud) == -1) {
         PCL_ERROR("Couldn't read the PLY file \n");
         return -1;
     }
@@ -374,8 +374,8 @@ int main(int argc, char **argv) {
 
     // 2D 평면으로 투영 및 결과 저장
     pcl::PointCloud<pcl::PointXYZ>::Ptr projected_2d_cloud = projectTo2DPlane(noise_free_points, pca_plane);
-    pcl::io::savePLYFile("/home/rp/urop/test_ws/src/boundary_evaluation/boundary_gt/boundary.ply", *projected_2d_cloud);
-
+    pcl::io::savePLYFile("/home/rp/urop/test_ws/src/boundary_evaluation/src/boundary_gt/boundary.ply", *projected_2d_cloud);
+    std::cout << "file saved to: /home/rp/urop/test_ws/src/boundary_evaluation/src/boundary_gt/boundary.ply" << std::endl;
     return 0;
 
 }

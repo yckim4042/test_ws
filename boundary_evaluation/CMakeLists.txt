@@ -12,11 +12,10 @@ find_package(PCL 1.8 REQUIRED)
 find_package(Eigen3 REQUIRED)
 
 # 실행 파일 추가
-add_executable(boundary_find_urop src/boundary_find_urop.cpp)
-add_executable(boundary_find_2013 src/boundary_find_2013.cpp)
+add_executable(boundary_evaluation src/boundary_find_urop.cpp)
 
 # 라이브러리 링크
-target_link_libraries(boundary_find_urop 
+target_link_libraries(boundary_evaluation 
   ${PCL_LIBRARIES}
   Eigen3::Eigen
 )
@@ -28,7 +27,7 @@ include_directories(
 )
 
 # 빌드 후 바이너리 위치 설정
-set_target_properties(boundary_find_urop PROPERTIES
+set_target_properties(boundary_evaluation PROPERTIES
     RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/
 )
 
