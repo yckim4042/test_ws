@@ -30,7 +30,7 @@ void process_ring_points(pcl::PointCloud<PointT>::Ptr cloud, std::vector<int>& i
         float max_difference = std::max({ std::abs(current_range - left_range), std::abs(current_range - right_range), 0.0f });
 
         // 차이가 0.5 이상인 경우에만 해당 포인트를 저장
-        if (max_difference >= 0.5) {
+        if (max_difference >= 0.05) {
             pcl::PointXYZRGBA significant_point;
             significant_point.x = cloud->points[current_idx].x;
             significant_point.y = cloud->points[current_idx].y;

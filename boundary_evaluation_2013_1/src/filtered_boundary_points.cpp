@@ -1,17 +1,55 @@
 #include <ros/ros.h>
 #include <sensor_msgs/PointCloud2.h>
+#include <pcl_conversions/pcl_conversions.h>
+#include <pcl/point_types.h>
+#include <pcl/io/ply_io.h>
+#include <pcl_ros/point_cloud.h>
+#include <unordered_map>
 #include <pcl_ros/point_cloud.h>
 #include <pcl/point_cloud.h>
-#include <pcl/point_types.h>
 #include <pcl/filters/passthrough.h>
 #include <pcl/segmentation/sac_segmentation.h>
-#include <pcl/io/ply_io.h>
 #include <pcl/conversions.h>
 #include <pcl/visualization/pcl_visualizer.h>
 #include <pcl/filters/extract_indices.h>
 #include <pcl/common/transforms.h>
 #include <cmath>  // To calculate sqrt for distance
-#include <cmath> // for sqrt
+
+typedef pcl::PointXYZI PointT;  // XYZ + intensity, ring 정보를 저장하기 위해 intensity를 사용
+
+// 포인트의 깊이 계산 (원점으로부터의 거리)
+float calculate_range(const PointT& point) {
+    return std::sqrt(point.x * point.x + point.y * point.y + point.z * point.z);
+}
+
+// ring별로 깊이 차이 계산 및 필터링
+void process_ring_points(pcl::PointCloud<PointT>::Ptr cloud, std::vector<int>& indices, pcl::PointCloud<pcl::PointXYZRGBA>::Ptr output_cloud) {
+    for (size_t i = 1; i < indices.size() - 1; ++i) {
+        int current_idx = indices[i];
+        int left_idx = indices[i - 1];
+        int right_idx = indices[i + 1];
+
+        float current_range = calculate_range(cloud->points[current_idx]);
+        float left_range = calculate_range(cloud->points[left_idx]);
+        float right_range = calculate_range(cloud->points[right_idx]);
+
+        // 왼쪽, 오른쪽과의 깊이 차이 중 가장 큰 값
+        float max_difference = std::max({ std::abs(current_range - left_range), std::abs(current_range - right_range), 0.0f });
+
+        // 차이가 0.5 이상인 경우에만 해당 포인트를 저장
+        if (max_difference >= 0.05) {
+            pcl::PointXYZRGBA significant_point;
+            significant_point.x = cloud->points[current_idx].x;
+            significant_point.y = cloud->points[current_idx].y;
+            significant_point.z = cloud->points[current_idx].z;
+            significant_point.r = 255;  // 색상은 따로 변경할 필요가 없지만, 기본값을 빨간색으로 설정
+            significant_point.g = 0;
+            significant_point.b = 0;
+            output_cloud->points.push_back(significant_point);
+        }
+    }
+}
+
 
 // Variables to store cloud and publishers
 ros::Publisher filtered_pub;
@@ -66,12 +104,26 @@ pcl::PointCloud<pcl::PointXYZ>::Ptr removeWalls(const pcl::PointCloud<pcl::Point
     return filtered_cloud;
 }
 
+void cloud_callback(const sensor_msgs::PointCloud2ConstPtr& cloud_msg) {
+    // ROS 포인트 클라우드 메시지를 PCL 포인트 클라우드로 변환
+    pcl::PointCloud<PointT>::Ptr cloud(new pcl::PointCloud<PointT>);
+    pcl::fromROSMsg(*cloud_msg, *cloud);
 
-// Callback function to process the incoming PointCloud2 data
-void pointCloudCallback(const sensor_msgs::PointCloud2::ConstPtr& input) {
-    pcl::PointCloud<pcl::PointXYZ>::Ptr cloud(new pcl::PointCloud<pcl::PointXYZ>());
-    pcl::fromROSMsg(*input, *cloud);  // Convert ROS PointCloud2 to PCL PointCloud
+    // ring 값을 기반으로 포인트들을 그룹화
+    std::unordered_map<int, std::vector<int>> ring_map;
+    for (size_t i = 0; i < cloud->points.size(); ++i) {
+        int ring = static_cast<int>(cloud->points[i].ring);  // ring 값을 intensity로 저장
+        ring_map[ring].push_back(i);
+    }
 
+    // 결과 포인트 클라우드 (깊이 차이가 큰 포인트들만 저장)
+    pcl::PointCloud<pcl::PointXYZRGBA>::Ptr significant_cloud(new pcl::PointCloud<pcl::PointXYZRGBA>);
+
+    // 각 ring에 대해 깊이 차이 계산 및 필터링 수행
+    for (const auto& ring_entry : ring_map) {
+        const std::vector<int>& ring_indices = ring_entry.second;
+        process_ring_points(cloud, ring_indices, significant_cloud);
+    }
     
     // 1. removeWalls 함수를 사용하여 포인트 필터링
     pcl::PointCloud<pcl::PointXYZ>::Ptr distance_filtered;
@@ -97,40 +149,30 @@ void pointCloudCallback(const sensor_msgs::PointCloud2::ConstPtr& input) {
         ROS_WARN("No plane found in the point cloud.");
         return;
     }
+    pcl::PointCloud<pcl::PointXYZ>::Ptr pattern_cloud;
+    // Get points belonging to plane in pattern pointcloud
+    pcl::SampleConsensusModelPlane<pcl::PointXYZ>::Ptr dit(
+      new pcl::SampleConsensusModelPlane<pcl::PointXYZ>(significant_cloud));
+    std::vector<int> inliers2;
+    dit->selectWithinDistance(coefficients, 0.04, inliers2);
+    pcl::copyPointCloud<pcl::PointXYZ>(*significant_cloud, inliers2, *pattern_cloud);
 
-    // Extract the inlier points (points belonging to the plane)
-    pcl::ExtractIndices<pcl::PointXYZ> extract;
-    extract.setInputCloud(distance_filtered);
-    extract.setIndices(inliers);
-    extract.setNegative(false);
-    extract.filter(*plane_cloud);
-
-    // 3. Save plane points to a PLY file
-    if (save_plane_to_ply) {
-        savePlaneToPLY(plane_cloud, "plane_points.ply");
-    }
-
-    // 4. Visualize both filtered points (in white) and plane points (in red)
-    visualizePointClouds(distance_filtered, plane_cloud);
-
-    // Publish the filtered point cloud (optional)
-    sensor_msgs::PointCloud2 output;
-    pcl::toROSMsg(*distance_filtered, output);
-    output.header = input->header;
-    filtered_pub.publish(output);
+    // 필터링된 포인트 클라우드를 PLY 파일로 저장 (깊이 차이가 큰 점들만)
+    pcl::io::savePLYFileASCII("filtered_boundary_points.ply", *pattern_cloud);
+    ROS_INFO("boundary points saved to boundary_points.ply");
 }
 
 int main(int argc, char** argv) {
-    ros::init(argc, argv, "ouster_plane_extraction");
+    // ROS 노드 초기화
+    ros::init(argc, argv, "ouster_depth_comparison");
     ros::NodeHandle nh;
 
-    // Subscriber for Ouster LiDAR point cloud topic
-    ros::Subscriber sub = nh.subscribe("/ouster/points", 1, pointCloudCallback);
+    // Ouster 포인트 클라우드 토픽 구독
+    ros::Subscriber sub = nh.subscribe("/ouster/points", 1, cloud_callback);
 
-    // Publisher for filtered point cloud
-    filtered_pub = nh.advertise<sensor_msgs::PointCloud2>("filtered_cloud", 1);
-
+    // ROS 이벤트 루프 실행
     ros::spin();
+
     return 0;
 }
 
