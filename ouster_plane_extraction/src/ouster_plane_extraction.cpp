@@ -52,9 +52,9 @@ void savePlaneToPLY(const pcl::PointCloud<pcl::PointXYZ>::Ptr& cloud, const std:
 
 // Function to remove walls based on the given range (equivalent to remove_walls in Python)
 pcl::PointCloud<pcl::PointXYZ>::Ptr removeWalls(const pcl::PointCloud<pcl::PointXYZ>::Ptr &cloud,
-                                                float x_min = 1, float x_max = 1.5,
-                                                float y_min = -0.7, float y_max = 0.7,
-                                                float z_min = -1, float z_max = 1) {
+                                                float x_min = 0, float x_max = 2,
+                                                float y_min = -0.7, float y_max = 1,
+                                                float z_min = 0, float z_max = 1) {
     pcl::PointCloud<pcl::PointXYZ>::Ptr filtered_cloud(new pcl::PointCloud<pcl::PointXYZ>);
     for (const auto &point : cloud->points) {
         if (point.x > x_min && point.x < x_max &&
@@ -87,7 +87,7 @@ void pointCloudCallback(const sensor_msgs::PointCloud2::ConstPtr& input) {
     seg.setDistanceThreshold(0.04);  // Set the distance threshold for inliers
 
     // Set the axis for finding a plane perpendicular to this vector
-    seg.setAxis(Eigen::Vector3f(0.9080245425960971, -0.14744341656355536, -0.39211206173135554));  // Set the axis constraint
+    seg.setAxis(Eigen::Vector3f(-0.698514, 0.709046, -0.0966029));  // Set the axis constraint
     seg.setEpsAngle(0.20);  // Set the angle tolerance (in radians)
 
     seg.setInputCloud(distance_filtered);

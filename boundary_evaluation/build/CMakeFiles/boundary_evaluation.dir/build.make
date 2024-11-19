@@ -57,37 +57,35 @@ include CMakeFiles/boundary_evaluation.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/boundary_evaluation.dir/flags.make
 
-CMakeFiles/boundary_evaluation.dir/src/boundary_find_urop.cpp.o: CMakeFiles/boundary_evaluation.dir/flags.make
-CMakeFiles/boundary_evaluation.dir/src/boundary_find_urop.cpp.o: ../src/boundary_find_urop.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rp/urop/test_ws/src/boundary_evaluation/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/boundary_evaluation.dir/src/boundary_find_urop.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/boundary_evaluation.dir/src/boundary_find_urop.cpp.o -c /home/rp/urop/test_ws/src/boundary_evaluation/src/boundary_find_urop.cpp
+CMakeFiles/boundary_evaluation.dir/src/main_6circle.cpp.o: CMakeFiles/boundary_evaluation.dir/flags.make
+CMakeFiles/boundary_evaluation.dir/src/main_6circle.cpp.o: ../src/main_6circle.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/rp/urop/test_ws/src/boundary_evaluation/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/boundary_evaluation.dir/src/main_6circle.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/boundary_evaluation.dir/src/main_6circle.cpp.o -c /home/rp/urop/test_ws/src/boundary_evaluation/src/main_6circle.cpp
 
-CMakeFiles/boundary_evaluation.dir/src/boundary_find_urop.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/boundary_evaluation.dir/src/boundary_find_urop.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/rp/urop/test_ws/src/boundary_evaluation/src/boundary_find_urop.cpp > CMakeFiles/boundary_evaluation.dir/src/boundary_find_urop.cpp.i
+CMakeFiles/boundary_evaluation.dir/src/main_6circle.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/boundary_evaluation.dir/src/main_6circle.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/rp/urop/test_ws/src/boundary_evaluation/src/main_6circle.cpp > CMakeFiles/boundary_evaluation.dir/src/main_6circle.cpp.i
 
-CMakeFiles/boundary_evaluation.dir/src/boundary_find_urop.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/boundary_evaluation.dir/src/boundary_find_urop.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/rp/urop/test_ws/src/boundary_evaluation/src/boundary_find_urop.cpp -o CMakeFiles/boundary_evaluation.dir/src/boundary_find_urop.cpp.s
+CMakeFiles/boundary_evaluation.dir/src/main_6circle.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/boundary_evaluation.dir/src/main_6circle.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/rp/urop/test_ws/src/boundary_evaluation/src/main_6circle.cpp -o CMakeFiles/boundary_evaluation.dir/src/main_6circle.cpp.s
 
 # Object files for target boundary_evaluation
 boundary_evaluation_OBJECTS = \
-"CMakeFiles/boundary_evaluation.dir/src/boundary_find_urop.cpp.o"
+"CMakeFiles/boundary_evaluation.dir/src/main_6circle.cpp.o"
 
 # External object files for target boundary_evaluation
 boundary_evaluation_EXTERNAL_OBJECTS =
 
-boundary_evaluation: CMakeFiles/boundary_evaluation.dir/src/boundary_find_urop.cpp.o
+boundary_evaluation: CMakeFiles/boundary_evaluation.dir/src/main_6circle.cpp.o
 boundary_evaluation: CMakeFiles/boundary_evaluation.dir/build.make
-boundary_evaluation: /usr/lib/x86_64-linux-gnu/libpcl_apps.so
-boundary_evaluation: /usr/lib/x86_64-linux-gnu/libpcl_outofcore.so
-boundary_evaluation: /usr/lib/x86_64-linux-gnu/libpcl_people.so
+boundary_evaluation: /usr/lib/x86_64-linux-gnu/libpcl_io.so
+boundary_evaluation: /usr/lib/x86_64-linux-gnu/libpcl_segmentation.so
 boundary_evaluation: /usr/lib/x86_64-linux-gnu/libboost_system.so
 boundary_evaluation: /usr/lib/x86_64-linux-gnu/libboost_filesystem.so
 boundary_evaluation: /usr/lib/x86_64-linux-gnu/libboost_date_time.so
 boundary_evaluation: /usr/lib/x86_64-linux-gnu/libboost_iostreams.so
 boundary_evaluation: /usr/lib/x86_64-linux-gnu/libboost_regex.so
-boundary_evaluation: /usr/lib/x86_64-linux-gnu/libqhull.so
 boundary_evaluation: /usr/lib/libOpenNI.so
 boundary_evaluation: /usr/lib/libOpenNI2.so
 boundary_evaluation: /usr/lib/x86_64-linux-gnu/libvtkChartsCore-7.1.so.7.1p.1
@@ -98,39 +96,54 @@ boundary_evaluation: /usr/lib/x86_64-linux-gnu/libjpeg.so
 boundary_evaluation: /usr/lib/x86_64-linux-gnu/libpng.so
 boundary_evaluation: /usr/lib/x86_64-linux-gnu/libtiff.so
 boundary_evaluation: /usr/lib/x86_64-linux-gnu/libexpat.so
-boundary_evaluation: /usr/lib/x86_64-linux-gnu/libvtkIOGeometry-7.1.so.7.1p.1
-boundary_evaluation: /usr/lib/x86_64-linux-gnu/libvtkIOLegacy-7.1.so.7.1p.1
-boundary_evaluation: /usr/lib/x86_64-linux-gnu/libvtkIOPLY-7.1.so.7.1p.1
-boundary_evaluation: /usr/lib/x86_64-linux-gnu/libvtkRenderingLOD-7.1.so.7.1p.1
 boundary_evaluation: /usr/lib/x86_64-linux-gnu/libvtkViewsContext2D-7.1.so.7.1p.1
 boundary_evaluation: /usr/lib/x86_64-linux-gnu/libvtkViewsCore-7.1.so.7.1p.1
 boundary_evaluation: /usr/lib/x86_64-linux-gnu/libvtkRenderingContextOpenGL2-7.1.so.7.1p.1
-boundary_evaluation: /usr/lib/x86_64-linux-gnu/libvtkRenderingOpenGL2-7.1.so.7.1p.1
 boundary_evaluation: /usr/lib/x86_64-linux-gnu/libflann_cpp.so
-boundary_evaluation: /usr/lib/x86_64-linux-gnu/libpcl_surface.so
-boundary_evaluation: /usr/lib/x86_64-linux-gnu/libpcl_keypoints.so
-boundary_evaluation: /usr/lib/x86_64-linux-gnu/libpcl_tracking.so
-boundary_evaluation: /usr/lib/x86_64-linux-gnu/libpcl_recognition.so
-boundary_evaluation: /usr/lib/x86_64-linux-gnu/libpcl_registration.so
-boundary_evaluation: /usr/lib/x86_64-linux-gnu/libpcl_stereo.so
-boundary_evaluation: /usr/lib/x86_64-linux-gnu/libpcl_segmentation.so
+boundary_evaluation: /usr/local/lib/libceres.a
+boundary_evaluation: /usr/lib/x86_64-linux-gnu/libboost_random.so
+boundary_evaluation: /usr/local/lib/libopencv_gapi.so.4.4.0
+boundary_evaluation: /usr/local/lib/libopencv_stitching.so.4.4.0
+boundary_evaluation: /usr/local/lib/libopencv_alphamat.so.4.4.0
+boundary_evaluation: /usr/local/lib/libopencv_aruco.so.4.4.0
+boundary_evaluation: /usr/local/lib/libopencv_bgsegm.so.4.4.0
+boundary_evaluation: /usr/local/lib/libopencv_bioinspired.so.4.4.0
+boundary_evaluation: /usr/local/lib/libopencv_ccalib.so.4.4.0
+boundary_evaluation: /usr/local/lib/libopencv_dnn_objdetect.so.4.4.0
+boundary_evaluation: /usr/local/lib/libopencv_dnn_superres.so.4.4.0
+boundary_evaluation: /usr/local/lib/libopencv_dpm.so.4.4.0
+boundary_evaluation: /usr/local/lib/libopencv_face.so.4.4.0
+boundary_evaluation: /usr/local/lib/libopencv_freetype.so.4.4.0
+boundary_evaluation: /usr/local/lib/libopencv_fuzzy.so.4.4.0
+boundary_evaluation: /usr/local/lib/libopencv_hdf.so.4.4.0
+boundary_evaluation: /usr/local/lib/libopencv_hfs.so.4.4.0
+boundary_evaluation: /usr/local/lib/libopencv_img_hash.so.4.4.0
+boundary_evaluation: /usr/local/lib/libopencv_intensity_transform.so.4.4.0
+boundary_evaluation: /usr/local/lib/libopencv_line_descriptor.so.4.4.0
+boundary_evaluation: /usr/local/lib/libopencv_quality.so.4.4.0
+boundary_evaluation: /usr/local/lib/libopencv_rapid.so.4.4.0
+boundary_evaluation: /usr/local/lib/libopencv_reg.so.4.4.0
+boundary_evaluation: /usr/local/lib/libopencv_rgbd.so.4.4.0
+boundary_evaluation: /usr/local/lib/libopencv_saliency.so.4.4.0
+boundary_evaluation: /usr/local/lib/libopencv_stereo.so.4.4.0
+boundary_evaluation: /usr/local/lib/libopencv_structured_light.so.4.4.0
+boundary_evaluation: /usr/local/lib/libopencv_superres.so.4.4.0
+boundary_evaluation: /usr/local/lib/libopencv_surface_matching.so.4.4.0
+boundary_evaluation: /usr/local/lib/libopencv_tracking.so.4.4.0
+boundary_evaluation: /usr/local/lib/libopencv_videostab.so.4.4.0
+boundary_evaluation: /usr/local/lib/libopencv_viz.so.4.4.0
+boundary_evaluation: /usr/local/lib/libopencv_xfeatures2d.so.4.4.0
+boundary_evaluation: /usr/local/lib/libopencv_xobjdetect.so.4.4.0
+boundary_evaluation: /usr/local/lib/libopencv_xphoto.so.4.4.0
 boundary_evaluation: /usr/lib/x86_64-linux-gnu/libpcl_features.so
 boundary_evaluation: /usr/lib/x86_64-linux-gnu/libpcl_filters.so
 boundary_evaluation: /usr/lib/x86_64-linux-gnu/libpcl_sample_consensus.so
-boundary_evaluation: /usr/lib/x86_64-linux-gnu/libpcl_ml.so
-boundary_evaluation: /usr/lib/x86_64-linux-gnu/libpcl_visualization.so
 boundary_evaluation: /usr/lib/x86_64-linux-gnu/libpcl_search.so
-boundary_evaluation: /usr/lib/x86_64-linux-gnu/libpcl_kdtree.so
-boundary_evaluation: /usr/lib/x86_64-linux-gnu/libpcl_io.so
 boundary_evaluation: /usr/lib/x86_64-linux-gnu/libpcl_octree.so
+boundary_evaluation: /usr/lib/x86_64-linux-gnu/libpcl_kdtree.so
+boundary_evaluation: /usr/lib/x86_64-linux-gnu/libpcl_ml.so
 boundary_evaluation: /usr/lib/x86_64-linux-gnu/libpcl_common.so
 boundary_evaluation: /usr/lib/x86_64-linux-gnu/libvtkInteractionWidgets-7.1.so.7.1p.1
-boundary_evaluation: /usr/lib/x86_64-linux-gnu/libvtkFiltersModeling-7.1.so.7.1p.1
-boundary_evaluation: /usr/lib/x86_64-linux-gnu/libvtkInteractionStyle-7.1.so.7.1p.1
-boundary_evaluation: /usr/lib/x86_64-linux-gnu/libvtkFiltersExtraction-7.1.so.7.1p.1
-boundary_evaluation: /usr/lib/x86_64-linux-gnu/libvtkFiltersStatistics-7.1.so.7.1p.1
-boundary_evaluation: /usr/lib/x86_64-linux-gnu/libvtkImagingFourier-7.1.so.7.1p.1
-boundary_evaluation: /usr/lib/x86_64-linux-gnu/libvtkalglib-7.1.so.7.1p.1
 boundary_evaluation: /usr/lib/x86_64-linux-gnu/libvtkFiltersHybrid-7.1.so.7.1p.1
 boundary_evaluation: /usr/lib/x86_64-linux-gnu/libvtkImagingGeneral-7.1.so.7.1p.1
 boundary_evaluation: /usr/lib/x86_64-linux-gnu/libvtkImagingSources-7.1.so.7.1p.1
@@ -140,10 +153,58 @@ boundary_evaluation: /usr/lib/x86_64-linux-gnu/libvtkImagingColor-7.1.so.7.1p.1
 boundary_evaluation: /usr/lib/x86_64-linux-gnu/libvtkRenderingVolume-7.1.so.7.1p.1
 boundary_evaluation: /usr/lib/x86_64-linux-gnu/libvtkIOXML-7.1.so.7.1p.1
 boundary_evaluation: /usr/lib/x86_64-linux-gnu/libvtkIOXMLParser-7.1.so.7.1p.1
-boundary_evaluation: /usr/lib/x86_64-linux-gnu/libvtkIOCore-7.1.so.7.1p.1
 boundary_evaluation: /usr/lib/x86_64-linux-gnu/libvtkRenderingContext2D-7.1.so.7.1p.1
+boundary_evaluation: /usr/lib/x86_64-linux-gnu/libglog.so
+boundary_evaluation: /usr/lib/x86_64-linux-gnu/libgflags.so.2.2.2
+boundary_evaluation: /usr/lib/x86_64-linux-gnu/libspqr.so
+boundary_evaluation: /usr/lib/x86_64-linux-gnu/libtbbmalloc.so
+boundary_evaluation: /usr/lib/x86_64-linux-gnu/libtbb.so
+boundary_evaluation: /usr/lib/x86_64-linux-gnu/libcholmod.so
+boundary_evaluation: /usr/lib/x86_64-linux-gnu/libccolamd.so
+boundary_evaluation: /usr/lib/x86_64-linux-gnu/libcamd.so
+boundary_evaluation: /usr/lib/x86_64-linux-gnu/libcolamd.so
+boundary_evaluation: /usr/lib/x86_64-linux-gnu/libamd.so
+boundary_evaluation: /usr/lib/x86_64-linux-gnu/liblapack.so
+boundary_evaluation: /usr/lib/x86_64-linux-gnu/libf77blas.so
+boundary_evaluation: /usr/lib/x86_64-linux-gnu/libatlas.so
+boundary_evaluation: /usr/lib/x86_64-linux-gnu/libsuitesparseconfig.so
+boundary_evaluation: /usr/lib/x86_64-linux-gnu/librt.so
+boundary_evaluation: /usr/lib/x86_64-linux-gnu/libcxsparse.so
+boundary_evaluation: /usr/lib/x86_64-linux-gnu/libtbbmalloc.so
+boundary_evaluation: /usr/lib/x86_64-linux-gnu/libtbb.so
+boundary_evaluation: /usr/lib/x86_64-linux-gnu/libcholmod.so
+boundary_evaluation: /usr/lib/x86_64-linux-gnu/libccolamd.so
+boundary_evaluation: /usr/lib/x86_64-linux-gnu/libcamd.so
+boundary_evaluation: /usr/lib/x86_64-linux-gnu/libcolamd.so
+boundary_evaluation: /usr/lib/x86_64-linux-gnu/libamd.so
+boundary_evaluation: /usr/lib/x86_64-linux-gnu/liblapack.so
+boundary_evaluation: /usr/lib/x86_64-linux-gnu/libf77blas.so
+boundary_evaluation: /usr/lib/x86_64-linux-gnu/libatlas.so
+boundary_evaluation: /usr/lib/x86_64-linux-gnu/libsuitesparseconfig.so
+boundary_evaluation: /usr/lib/x86_64-linux-gnu/librt.so
+boundary_evaluation: /usr/lib/x86_64-linux-gnu/libcxsparse.so
+boundary_evaluation: /usr/local/lib/libopencv_shape.so.4.4.0
+boundary_evaluation: /usr/local/lib/libopencv_highgui.so.4.4.0
+boundary_evaluation: /usr/local/lib/libopencv_datasets.so.4.4.0
+boundary_evaluation: /usr/local/lib/libopencv_plot.so.4.4.0
+boundary_evaluation: /usr/local/lib/libopencv_text.so.4.4.0
+boundary_evaluation: /usr/local/lib/libopencv_dnn.so.4.4.0
+boundary_evaluation: /usr/local/lib/libopencv_ml.so.4.4.0
+boundary_evaluation: /usr/local/lib/libopencv_phase_unwrapping.so.4.4.0
 boundary_evaluation: /usr/lib/x86_64-linux-gnu/libvtkRenderingFreeType-7.1.so.7.1p.1
 boundary_evaluation: /usr/lib/x86_64-linux-gnu/libfreetype.so
+boundary_evaluation: /usr/lib/x86_64-linux-gnu/libvtkInteractionStyle-7.1.so.7.1p.1
+boundary_evaluation: /usr/lib/x86_64-linux-gnu/libvtkFiltersExtraction-7.1.so.7.1p.1
+boundary_evaluation: /usr/lib/x86_64-linux-gnu/libvtkFiltersStatistics-7.1.so.7.1p.1
+boundary_evaluation: /usr/lib/x86_64-linux-gnu/libvtkImagingFourier-7.1.so.7.1p.1
+boundary_evaluation: /usr/lib/x86_64-linux-gnu/libvtkalglib-7.1.so.7.1p.1
+boundary_evaluation: /usr/lib/x86_64-linux-gnu/libvtkIOGeometry-7.1.so.7.1p.1
+boundary_evaluation: /usr/lib/x86_64-linux-gnu/libvtkIOLegacy-7.1.so.7.1p.1
+boundary_evaluation: /usr/lib/x86_64-linux-gnu/libvtkIOPLY-7.1.so.7.1p.1
+boundary_evaluation: /usr/lib/x86_64-linux-gnu/libvtkRenderingLOD-7.1.so.7.1p.1
+boundary_evaluation: /usr/lib/x86_64-linux-gnu/libvtkFiltersModeling-7.1.so.7.1p.1
+boundary_evaluation: /usr/lib/x86_64-linux-gnu/libvtkIOCore-7.1.so.7.1p.1
+boundary_evaluation: /usr/lib/x86_64-linux-gnu/libvtkRenderingOpenGL2-7.1.so.7.1p.1
 boundary_evaluation: /usr/lib/x86_64-linux-gnu/libvtkImagingCore-7.1.so.7.1p.1
 boundary_evaluation: /usr/lib/x86_64-linux-gnu/libvtkRenderingCore-7.1.so.7.1p.1
 boundary_evaluation: /usr/lib/x86_64-linux-gnu/libvtkCommonColor-7.1.so.7.1p.1
@@ -170,6 +231,18 @@ boundary_evaluation: /usr/lib/x86_64-linux-gnu/libICE.so
 boundary_evaluation: /usr/lib/x86_64-linux-gnu/libX11.so
 boundary_evaluation: /usr/lib/x86_64-linux-gnu/libXext.so
 boundary_evaluation: /usr/lib/x86_64-linux-gnu/libXt.so
+boundary_evaluation: /usr/local/lib/libopencv_optflow.so.4.4.0
+boundary_evaluation: /usr/local/lib/libopencv_ximgproc.so.4.4.0
+boundary_evaluation: /usr/local/lib/libopencv_video.so.4.4.0
+boundary_evaluation: /usr/local/lib/libopencv_videoio.so.4.4.0
+boundary_evaluation: /usr/local/lib/libopencv_imgcodecs.so.4.4.0
+boundary_evaluation: /usr/local/lib/libopencv_objdetect.so.4.4.0
+boundary_evaluation: /usr/local/lib/libopencv_calib3d.so.4.4.0
+boundary_evaluation: /usr/local/lib/libopencv_features2d.so.4.4.0
+boundary_evaluation: /usr/local/lib/libopencv_flann.so.4.4.0
+boundary_evaluation: /usr/local/lib/libopencv_photo.so.4.4.0
+boundary_evaluation: /usr/local/lib/libopencv_imgproc.so.4.4.0
+boundary_evaluation: /usr/local/lib/libopencv_core.so.4.4.0
 boundary_evaluation: CMakeFiles/boundary_evaluation.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/rp/urop/test_ws/src/boundary_evaluation/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable boundary_evaluation"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/boundary_evaluation.dir/link.txt --verbose=$(VERBOSE)

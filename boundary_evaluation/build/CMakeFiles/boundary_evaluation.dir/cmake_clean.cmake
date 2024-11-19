@@ -1,5 +1,5 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/boundary_evaluation.dir/src/boundary_find_urop.cpp.o"
+  "CMakeFiles/boundary_evaluation.dir/src/main_6circle.cpp.o"
   "boundary_evaluation"
   "boundary_evaluation.pdb"
 )

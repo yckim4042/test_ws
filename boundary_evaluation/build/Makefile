@@ -56,17 +56,6 @@ CMAKE_BINARY_DIR = /home/rp/urop/test_ws/src/boundary_evaluation/build
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target rebuild_cache
-rebuild_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/usr/bin/cmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : rebuild_cache
-
-# Special rule for the target rebuild_cache
-rebuild_cache/fast: rebuild_cache
-
-.PHONY : rebuild_cache/fast
-
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
@@ -77,6 +66,17 @@ edit_cache:
 edit_cache/fast: edit_cache
 
 .PHONY : edit_cache/fast
+
+# Special rule for the target rebuild_cache
+rebuild_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
+	/usr/bin/cmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : rebuild_cache
+
+# Special rule for the target rebuild_cache
+rebuild_cache/fast: rebuild_cache
+
+.PHONY : rebuild_cache/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -111,6 +111,19 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named boundary_evaluation_ver2
+
+# Build rule for target.
+boundary_evaluation_ver2: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 boundary_evaluation_ver2
+.PHONY : boundary_evaluation_ver2
+
+# fast build rule for target.
+boundary_evaluation_ver2/fast:
+	$(MAKE) -f CMakeFiles/boundary_evaluation_ver2.dir/build.make CMakeFiles/boundary_evaluation_ver2.dir/build
+.PHONY : boundary_evaluation_ver2/fast
+
+#=============================================================================
 # Target rules for targets named boundary_evaluation
 
 # Build rule for target.
@@ -123,32 +136,59 @@ boundary_evaluation/fast:
 	$(MAKE) -f CMakeFiles/boundary_evaluation.dir/build.make CMakeFiles/boundary_evaluation.dir/build
 .PHONY : boundary_evaluation/fast
 
-src/boundary_find_urop.o: src/boundary_find_urop.cpp.o
+src/main_6circle.o: src/main_6circle.cpp.o
 
-.PHONY : src/boundary_find_urop.o
+.PHONY : src/main_6circle.o
 
 # target to build an object file
-src/boundary_find_urop.cpp.o:
-	$(MAKE) -f CMakeFiles/boundary_evaluation.dir/build.make CMakeFiles/boundary_evaluation.dir/src/boundary_find_urop.cpp.o
-.PHONY : src/boundary_find_urop.cpp.o
+src/main_6circle.cpp.o:
+	$(MAKE) -f CMakeFiles/boundary_evaluation.dir/build.make CMakeFiles/boundary_evaluation.dir/src/main_6circle.cpp.o
+.PHONY : src/main_6circle.cpp.o
 
-src/boundary_find_urop.i: src/boundary_find_urop.cpp.i
+src/main_6circle.i: src/main_6circle.cpp.i
 
-.PHONY : src/boundary_find_urop.i
+.PHONY : src/main_6circle.i
 
 # target to preprocess a source file
-src/boundary_find_urop.cpp.i:
-	$(MAKE) -f CMakeFiles/boundary_evaluation.dir/build.make CMakeFiles/boundary_evaluation.dir/src/boundary_find_urop.cpp.i
-.PHONY : src/boundary_find_urop.cpp.i
+src/main_6circle.cpp.i:
+	$(MAKE) -f CMakeFiles/boundary_evaluation.dir/build.make CMakeFiles/boundary_evaluation.dir/src/main_6circle.cpp.i
+.PHONY : src/main_6circle.cpp.i
 
-src/boundary_find_urop.s: src/boundary_find_urop.cpp.s
+src/main_6circle.s: src/main_6circle.cpp.s
 
-.PHONY : src/boundary_find_urop.s
+.PHONY : src/main_6circle.s
 
 # target to generate assembly for a file
-src/boundary_find_urop.cpp.s:
-	$(MAKE) -f CMakeFiles/boundary_evaluation.dir/build.make CMakeFiles/boundary_evaluation.dir/src/boundary_find_urop.cpp.s
-.PHONY : src/boundary_find_urop.cpp.s
+src/main_6circle.cpp.s:
+	$(MAKE) -f CMakeFiles/boundary_evaluation.dir/build.make CMakeFiles/boundary_evaluation.dir/src/main_6circle.cpp.s
+.PHONY : src/main_6circle.cpp.s
+
+src/main_6circle_variable_R.o: src/main_6circle_variable_R.cpp.o
+
+.PHONY : src/main_6circle_variable_R.o
+
+# target to build an object file
+src/main_6circle_variable_R.cpp.o:
+	$(MAKE) -f CMakeFiles/boundary_evaluation_ver2.dir/build.make CMakeFiles/boundary_evaluation_ver2.dir/src/main_6circle_variable_R.cpp.o
+.PHONY : src/main_6circle_variable_R.cpp.o
+
+src/main_6circle_variable_R.i: src/main_6circle_variable_R.cpp.i
+
+.PHONY : src/main_6circle_variable_R.i
+
+# target to preprocess a source file
+src/main_6circle_variable_R.cpp.i:
+	$(MAKE) -f CMakeFiles/boundary_evaluation_ver2.dir/build.make CMakeFiles/boundary_evaluation_ver2.dir/src/main_6circle_variable_R.cpp.i
+.PHONY : src/main_6circle_variable_R.cpp.i
+
+src/main_6circle_variable_R.s: src/main_6circle_variable_R.cpp.s
+
+.PHONY : src/main_6circle_variable_R.s
+
+# target to generate assembly for a file
+src/main_6circle_variable_R.cpp.s:
+	$(MAKE) -f CMakeFiles/boundary_evaluation_ver2.dir/build.make CMakeFiles/boundary_evaluation_ver2.dir/src/main_6circle_variable_R.cpp.s
+.PHONY : src/main_6circle_variable_R.cpp.s
 
 # Help Target
 help:
@@ -156,12 +196,16 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... rebuild_cache"
 	@echo "... edit_cache"
+	@echo "... rebuild_cache"
+	@echo "... boundary_evaluation_ver2"
 	@echo "... boundary_evaluation"
-	@echo "... src/boundary_find_urop.o"
-	@echo "... src/boundary_find_urop.i"
-	@echo "... src/boundary_find_urop.s"
+	@echo "... src/main_6circle.o"
+	@echo "... src/main_6circle.i"
+	@echo "... src/main_6circle.s"
+	@echo "... src/main_6circle_variable_R.o"
+	@echo "... src/main_6circle_variable_R.i"
+	@echo "... src/main_6circle_variable_R.s"
 .PHONY : help
 
 

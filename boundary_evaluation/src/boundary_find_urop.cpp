@@ -17,7 +17,7 @@
 using namespace Eigen;
 // Function to remove walls based on the given range (equivalent to remove_walls in Python)
 pcl::PointCloud<pcl::PointXYZ>::Ptr removeWalls(const pcl::PointCloud<pcl::PointXYZ>::Ptr &cloud,
-                                                float x_min = 0, float x_max = 1.5,
+                                                float x_min = 0, float x_max = 2,
                                                 float y_min = -1, float y_max = 1,
                                                 float z_min = -1, float z_max = 1) {
     pcl::PointCloud<pcl::PointXYZ>::Ptr filtered_cloud(new pcl::PointCloud<pcl::PointXYZ>);
@@ -124,7 +124,7 @@ pcl::PointCloud<pcl::PointXYZ>::Ptr findMostPlanarCluster(const pcl::PointCloud<
 }
 
 std::pair<Eigen::Vector4f, pcl::PointIndices::Ptr> detectPlanes(const pcl::PointCloud<pcl::PointXYZ>::Ptr &cloud,
-                                                                double distance_threshold = 0.015,
+                                                                double distance_threshold = 0.025,
                                                                 int ransac_n = 3, int num_iterations = 1000) {
     pcl::SACSegmentation<pcl::PointXYZ> seg;
     pcl::PointIndices::Ptr inliers(new pcl::PointIndices);
@@ -175,7 +175,7 @@ pcl::PointCloud<pcl::PointXYZ>::Ptr projectPointsToPlane(const pcl::PointCloud<p
     return projected_cloud;
 }
 pcl::PointCloud<pcl::PointXYZ>::Ptr findBoundaryPointsImproved(const pcl::PointCloud<pcl::PointXYZ>::Ptr &cloud,
-                                                               double radius = 0.012, double min_distance = 0.003) {
+                                                               double radius = 0.0135, double min_distance = 0.003) {
     pcl::KdTreeFLANN<pcl::PointXYZ> kdtree;
     kdtree.setInputCloud(cloud);
 
@@ -218,7 +218,7 @@ pcl::PointCloud<pcl::PointXYZ>::Ptr findBoundaryPointsImproved(const pcl::PointC
             double centroid_distance = centroid.norm();
             double cdr = centroid_distance / mean_distance;
 
-            if (cdr <= 0.42)
+            if (cdr <= 0.55)
                 continue;
 
             // Calculate variance manually
@@ -234,7 +234,7 @@ pcl::PointCloud<pcl::PointXYZ>::Ptr findBoundaryPointsImproved(const pcl::PointC
             }
             direction_variance /= valid_neighbors.size();
 
-            if (direction_variance.sum() < 1) {
+            if (direction_variance.sum() < 0.7) {
                 boundary_mask[i] = true;
             }
         }
@@ -288,7 +288,7 @@ pcl::PointCloud<pcl::PointXYZ>::Ptr findAndRemoveLines(const pcl::PointCloud<pcl
         double distance_to_second_axis = distanceFromPointToLine(p, mean_point, second_principal_component);
 
         // 조건에 따라 포인트 제거
-        if (distance_to_first_axis > 0.13 || distance_to_second_axis > 0.23) {
+        if (distance_to_first_axis > 0.13 || distance_to_second_axis > 0.2) {
             indices_to_remove.insert(i);
         }
     }
@@ -337,7 +337,7 @@ pcl::PointCloud<pcl::PointXYZ>::Ptr projectTo2DPlane(const pcl::PointCloud<pcl::
 int main(int argc, char **argv) {
 
     pcl::PointCloud<pcl::PointXYZ>::Ptr cloud(new pcl::PointCloud<pcl::PointXYZ>);
-    if (pcl::io::loadPLYFile<pcl::PointXYZ>("/home/rp/urop/test_ws/src/boundary_evaluation/src/boundary_gt/point_cloud_001_float.ply", *cloud) == -1) {
+    if (pcl::io::loadPLYFile<pcl::PointXYZ>("/home/rp/urop/test_ws/src/boundary_evaluation/src/boundary_gt/accumulated_pointcloud_3.ply", *cloud) == -1) {
         PCL_ERROR("Couldn't read the PLY file \n");
         return -1;
     }

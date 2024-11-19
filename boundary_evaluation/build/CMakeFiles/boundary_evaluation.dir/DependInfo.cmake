@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/rp/urop/test_ws/src/boundary_evaluation/src/boundary_find_urop.cpp" "/home/rp/urop/test_ws/src/boundary_evaluation/build/CMakeFiles/boundary_evaluation.dir/src/boundary_find_urop.cpp.o"
+  "/home/rp/urop/test_ws/src/boundary_evaluation/src/main_6circle.cpp" "/home/rp/urop/test_ws/src/boundary_evaluation/build/CMakeFiles/boundary_evaluation.dir/src/main_6circle.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
@@ -13,7 +13,7 @@ set(CMAKE_TARGET_DEFINITIONS_CXX
   "DISABLE_LIBUSB_1_0"
   "DISABLE_PCAP"
   "DISABLE_PNG"
-  "qh_QHpointer"
+  "GFLAGS_IS_A_DLL=0"
   "vtkRenderingContext2D_AUTOINIT=1(vtkRenderingContextOpenGL2)"
   "vtkRenderingCore_AUTOINIT=3(vtkInteractionStyle,vtkRenderingFreeType,vtkRenderingOpenGL2)"
   )
@@ -26,6 +26,7 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "/usr/include/eigen3"
   "/usr/include/ni"
   "/usr/include/openni2"
+  "/usr/local/include/opencv4"
   )
 
 # Targets to which this target links.

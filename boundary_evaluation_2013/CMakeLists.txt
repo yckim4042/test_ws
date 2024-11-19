@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.0.2)
 project(boundary_evaluation_2013)
-
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 ## Find catkin macros and libraries
 find_package(catkin REQUIRED COMPONENTS
   roscpp
@@ -39,4 +40,9 @@ target_link_libraries(filtered_boundary_points
 install(TARGETS filtered_boundary_points
   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
+find_package(Boost REQUIRED COMPONENTS random)
+target_link_libraries(filtered_boundary_points ${Boost_LIBRARIES})
+find_package(Ceres REQUIRED)
+target_link_libraries(filtered_boundary_points ${CERES_LIBRARIES} ${GLOG_LIBRARIES})
+include_directories(${CERES_INCLUDE_DIRS} ${GLOG_INCLUDE_DIRS})
 

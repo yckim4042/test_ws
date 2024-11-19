@@ -1,33 +1,54 @@
 cmake_minimum_required(VERSION 3.5)
 project(boundary_evaluation)
 
-# C++17 표준 설정
+# Set C++17 standard
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# PCL 패키지 찾기
-find_package(PCL 1.8 REQUIRED)
-
-# Eigen 패키지 찾기
+# Find required packages
+find_package(PCL REQUIRED COMPONENTS common io filters segmentation)
 find_package(Eigen3 REQUIRED)
+find_package(Boost REQUIRED COMPONENTS random)
+find_package(Ceres REQUIRED)
+find_package(OpenCV REQUIRED)
 
-# 실행 파일 추가
-add_executable(boundary_evaluation src/boundary_find_urop.cpp)
+# Include directories
+include_directories(
+  ${PCL_INCLUDE_DIRS}
+  ${EIGEN3_INCLUDE_DIRS}
+  ${CERES_INCLUDE_DIRS}
+  ${Boost_INCLUDE_DIRS}
+  ${OpenCV_INCLUDE_DIRS}
+)
 
-# 라이브러리 링크
-target_link_libraries(boundary_evaluation 
+# Link directories
+link_directories(${PCL_LIBRARY_DIRS} ${CERES_LIBRARY_DIRS})
+
+# Add definitions
+add_definitions(${PCL_DEFINITIONS})
+
+# Executables
+add_executable(boundary_evaluation src/main_6circle.cpp)
+add_executable(boundary_evaluation_ver2 src/main_6circle_variable_R.cpp)
+
+# Link libraries
+target_link_libraries(boundary_evaluation
   ${PCL_LIBRARIES}
+  ${CERES_LIBRARIES}
+  ${Boost_LIBRARIES}
+  ${OpenCV_LIBS}
   Eigen3::Eigen
 )
 
-# 헤더 파일 경로 추가
-include_directories(
-  ${PCL_INCLUDE_DIRS}
-  ${EIGEN3_INCLUDE_DIR}
+target_link_libraries(boundary_evaluation_ver2
+  ${PCL_LIBRARIES}
+  ${CERES_LIBRARIES}
+  ${Boost_LIBRARIES}
+  ${OpenCV_LIBS}
+  Eigen3::Eigen
 )
 
-# 빌드 후 바이너리 위치 설정
-set_target_properties(boundary_evaluation PROPERTIES
-    RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/
-)
+# Output directory
+set_target_properties(boundary_evaluation boundary_evaluation_ver2 PROPERTIES
+    RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/)
 
